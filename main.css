@@ -1,0 +1,270 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: black;
+    color: #fff;
+}
+
+/* 
+Start Styling [Header]
+========================================
+*/
+
+header {
+    width: 100Vw;
+    background-image: linear-gradient(180deg, lab(0% 0 0 / 0.91), 70%, transparent);
+    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+header .headerContainer {
+    margin: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+h1 {
+    text-transform: capitalize;
+    font-size: 18px;
+    background-color: transparent;
+    color: #ddd332;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+h1:hover {
+    color: #c5bb2b;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+}
+
+li {
+    font-size: 15px;
+    background-color: transparent;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 0;
+}
+li:hover  {
+    color: #ddd332; 
+}
+
+li::before {
+    content: "";
+    border-bottom: 2px solid  #ddd332;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.3s;
+    transform: rotateY(90deg);
+    transform-origin: left;
+}
+
+li:hover::before {
+    transform: rotateY(0deg);
+}
+
+/* 
+Start Styling [Main Content]
+========================================
+*/
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.container .itemsContainer .item {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(0);
+    transform-origin: right bottom;
+    opacity: 0;
+    filter: blur(10px);
+}
+
+.container .itemsContainer .item.active {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0px);
+    transition: all 0.7s;
+}
+
+.container .itemsContainer .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container .itemsContainer .item .content {
+    min-width: 500px;
+    max-width: 50%;
+    margin-left: 30px;
+    padding: 20px;
+    border-radius: 40px;
+    corner-shape: round bevel round bevel ;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+}
+
+.container .itemsContainer .item .content .author {
+    letter-spacing: 7px;
+    text-transform: capitalize;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.container .itemsContainer .item .content .title {
+    font-size: 60px;
+    margin: 20px 0;
+    color: #c5bb2b;
+    font-weight: bold;
+}
+
+.container .itemsContainer .item .content .des {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.container .itemsContainer .item .content .btns {
+    display: flex;
+    gap:10px;
+}
+
+.container .itemsContainer .item .content .btns span {
+    padding: 10px;
+    background-color: transparent;
+    border: 2px solid #ddd332;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 22px;
+    font-weight: 100;
+    border-radius: 10px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.container .itemsContainer .item .content .btns span:hover {
+    background-color: #ddd332;
+    border-color: #c5bb2b;
+    color: black;
+}
+
+.container .itemsContainer .item.active .content{
+    top: calc(50% + 100px);
+    filter: blur(5px);
+    opacity: 0;
+    animation: showContent 0.5s linear 0.5s forwards;
+}
+
+.container .itemsContainer .item.active .author,
+.container .itemsContainer .item.active .title,
+.container .itemsContainer .item.active .des,
+.container .itemsContainer .item.active .btns {
+    transform: translateY(40px);
+    opacity: 0;
+    filter: blur(5px);
+    animation: show 0.7s linear forwards;
+}
+
+.container .itemsContainer .item.active .author {
+    animation-delay: .9s;
+}
+
+.container .itemsContainer .item.active .title {
+    animation-delay: 1.1s;
+}
+
+.container .itemsContainer .item.active .des {
+    animation-delay: 1.3s;
+}
+
+.container .itemsContainer .item.active .btns {
+    animation-delay: 1.5s;
+}
+
+@keyframes showContent {
+    to {
+        top: calc(50%);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+@keyframes show {
+    to {
+        transform: translateY(0px);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+
+/* 
+Start Styling [Arrows]
+========================================
+*/
+
+.container .arrows {
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 30px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    z-index: 100;
+}
+
+.container .arrows span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+    border: 2px solid #ddd332;
+    color: #ddd332;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.container .arrows span:hover {
+    border-color: #c5bb2b;
+    font-weight: bold;
+    background-color: #ddd332;
+    color: black;
+}
